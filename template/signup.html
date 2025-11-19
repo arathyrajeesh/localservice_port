@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Choose Sign Up Type</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .container {
+        background-color: white;
+        padding: 50px 70px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    h2 {
+        margin-bottom: 30px;
+        font-size: 26px;
+        font-weight: bold;
+        background: linear-gradient(to right, #28a745, #218838);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .signup-button {
+        display: block;
+        width: 260px;
+        margin: 12px auto;
+        padding: 14px;
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(to right, #28a745, #218838);
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .signup-button:hover {
+        background: linear-gradient(to right, #1e7e34, #19692c);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(33, 136, 56, 0.3);
+    }
+
+    .login-link {
+        margin-top: 25px;
+        font-size: 14px;
+    }
+
+    .login-link a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .login-link a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 500px) {
+        .container {
+            padding: 40px 25px;
+            width: 90%;
+        }
+
+        .signup-button {
+            width: 100%;
+            font-size: 15px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Select Account Type to Sign Up</h2>
+    <a href="{% url 'worker-signup' %}" class="signup-button">Create Worker Account</a>
+    <a href="{% url 'consumer_signup' %}" class="signup-button">Create Consumer Account</a>
+    <div class="login-link">Already have an account? <a href="{% url 'login' %}">Login here</a></div>
+</div>
+
+</body>
+</html>

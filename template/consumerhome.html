@@ -1,0 +1,315 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Consumer Home</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+        background-color: #f8f9fc;
+    }
+
+    .navbar {
+        background: #000044;
+        color: #fff;
+        padding: 15px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 6px #0003;
+    }
+
+    .navbar .logo h2 {
+        margin: 0;
+    }
+
+    .navbar ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar ul li {
+        margin: 0 15px;
+    }
+
+    .navbar ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 15px;
+        transition: color 0.3s;
+    }
+
+    .navbar ul li a:hover {
+        color: #ffcc00;
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+    }
+
+    .search-bar input[type="text"] {
+        padding: 6px 12px;
+        border-radius: 5px 0 0 5px;
+        border: none;
+        font-size: 14px;
+        outline: none;
+    }
+
+    .search-bar button {
+        padding: 6px 12px;
+        border: none;
+        background-color: #ff9900;
+        color: white;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .search-bar button:hover {
+        background-color: #cc7a00;
+    }
+
+    .welcome {
+        background-image: url('  https://images.unsplash.com/photo-1581091226825-a6a2a5aee158');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 60px 20px;
+        color: white;
+        text-align: center;
+        text-shadow: 1px 1px 4px #000;
+        border-radius: 10px;
+    }
+
+
+
+    .container {
+        padding: 50px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 50px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .container img {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px #0002;
+    }
+
+    .container .text {
+        flex: 1;
+    }
+
+    .container .text h2 {
+        color: #000044;
+        margin-bottom: 20px;
+        font-size: 2em;
+    }
+
+    .container .text p {
+        color: #555;
+        font-size: 1.1em;
+        line-height: 1.6;
+    }
+
+    .card {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 40px 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h2 {
+        text-align: center;
+        color: #000044;
+        margin-bottom: 40px;
+        font-size: 2em;
+    }
+
+    .card .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+    }
+
+    .card .service-item {
+        background-color: #fff;
+        border-left: 6px solid #000044;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s;
+    }
+
+    .card .service-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .card .service-item strong {
+        display: block;
+        font-size: 18px;
+        color: #000044;
+        margin-bottom: 10px;
+    }
+
+    .book-btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 16px;
+        background-color: #000044;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .book-btn:hover {
+        background-color: #333366;
+    }
+
+    #contact, #about {
+        background-color: #eef2f8;
+        border-top: 1px solid #ccc;
+    }
+
+    .contact-section {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .contact-section .text {
+        max-width: 600px;
+    }
+
+    @media (max-width: 768px) {
+        .navbar {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .navbar ul {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .navbar ul li {
+            margin: 10px 0;
+        }
+
+        .search-bar {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            flex-direction: column;
+            padding: 30px 20px;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><h2>Local Service Port</h2></div>
+    
+        <form method="GET" action="{% url 'search' %}" class="search-bar">
+            <input type="text" name="query" placeholder="Search services..." value="{{ request.GET.query }}">
+            <button type="submit">Search</button>
+        </form>
+    
+        <ul>
+            <li><a href="{% url 'consumer_home' %}">Home</a></li>
+            <li><a href="{% url 'addservice' %}">Added services</a></li>
+            <li><a href="#service">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="{% url 'login' %}">Log out</a></li>
+        </ul>
+    </div>
+    
+    
+
+    <center>
+        <div class="welcome">
+            <h2>Welcome, {{ user.username }}</h2>
+        </div>
+    </center>
+
+    <div class="card">
+        <h2>Available Services</h2>
+        {% if services %}
+        <div class="card-grid">
+            {% for service in services %}
+            <div class="service-item">
+                <strong>{{ service.title }}</strong>
+                <p>₹{{ service.price }}</p>
+                <p>{{ service.description }}</p>
+                <p>{{ service.worker }}</p>
+                <p><em>Experience: {{ service.experience }} years</em></p>
+                <a href="{% url 'book_service' service.id %}" class="book-btn">Book Now</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p style="text-align:center;">No services found.</p>
+        {% endif %}
+    </div>
+
+    <div class="container">
+        <img src="https://irp.cdn-website.com/3d7b176b/dms3rep/multi/logo-white-text.png" alt="Moving">
+        <div class="text">
+            <h2>Moving You Forward</h2>
+            <p>We provide fast and careful relocation services to make your move effortless and comfortable. Our team handles everything from packaging to delivery with expertise and care.</p>
+        </div>
+    </div>
+
+    <div id="service" class="container">
+        <img src="https://5.imimg.com/data5/SELLER/Default/2024/1/373914045/HB/NZ/RR/8100122/plumber-electrician-and-mst-service-provider.jpg" alt="Services">
+        <div class="text">
+            <h2>Our Services</h2>
+            <p>We provide a range of services including packaging, delivery, storage, and more.</p>
+        </div>
+    </div>
+
+    <div id="about" class="container">
+        <img src="https://www.shutterstock.com/image-photo/hand-show-icon-address-phone-600nw-2475999141.jpg" alt="About Us">
+        <div class="text">
+            <h2>About Us</h2>
+            <p>
+                Local Service Port is your all-in-one platform designed to connect you with reliable, skilled service providers in your area.
+                Whether you need a plumber, electrician, mover, or delivery service, we make it easy to find the help you need quickly.
+            </p>
+        </div>
+    </div>
+
+    <div id="contact" class="container contact-section">
+        <div class="text">
+            <h2>Contact</h2>
+            <p>245 East 94th Street, New York, NY</p>
+            <p>Monday - Friday: 7:30am - 5pm</p>
+            <p>Arathy TP</p>
+            <p>service@gmail.com</p>
+        </div>
+    </div>
+</body>
+</html>

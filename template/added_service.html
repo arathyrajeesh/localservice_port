@@ -1,0 +1,133 @@
+{% block content %}
+<style>
+    .card {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 40px 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h2 {
+        text-align: center;
+        color: #000044;
+        margin-bottom: 40px;
+        font-size: 2em;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .service-item {
+        background-color: #f8f9fc;
+        border-left: 6px solid #000044;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .service-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .service-item strong {
+        font-size: 18px;
+        color: #000044;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .service-item p {
+        margin: 6px 0;
+        color: #333;
+        font-size: 14px;
+    }
+
+    .cancel-btn {
+        margin-top: 10px;
+        background-color: #cc0000;
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .cancel-btn:hover {
+        background-color: #990000;
+    }
+
+    .no-booking {
+        text-align: center;
+        font-size: 16px;
+        color: #777;
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            padding: 20px 10px;
+        }
+
+        .card h2 {
+            font-size: 1.5em;
+        }
+
+        .service-item {
+            padding: 15px;
+        }
+    }
+</style>
+
+<div style="max-width: 1200px; margin: 20px auto; text-align: left;">
+    <a href="{% url 'consumer_home' %}" class="back-home-btn">← Back to Home</a>
+</div>
+
+<div class="card">
+    <h2>Your Booked Services</h2>
+
+    {% if booking_data %}
+    <div class="card-grid">
+        {% for item in booking_data %}
+            {% with booking=item.booking messages=item.messages %}
+            <div class="service-item">
+                <strong>{{ booking.service.title }}</strong>
+                <p>₹{{ booking.service.price }}</p>
+                <p>{{ booking.service.description }}</p>
+                <p>Worker: {{ booking.service.worker }}</p>
+                <p>Experience: {{ booking.service.experience }} years</p>
+                <p>Date: {{ booking.date }}</p>
+
+                {% if messages %}
+                <div style="margin-top: 10px;">
+                    <strong style="color: #000044;">Message from Worker:</strong>
+                    <ul style="padding-left: 20px; margin: 8px 0;">
+                        {% for msg in messages %}
+                        <li style="font-size: 13px; color: #555;">
+                            {{ msg.content }}
+                            <small style="color: #999;">({{ msg.timestamp|date:"Y-m-d H:i" }})</small>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <form method="POST" action="{% url 'cancel_booking' booking.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="cancel-btn">Cancel</button>
+                </form>
+            </div>
+            {% endwith %}
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-booking">You haven't booked any services yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

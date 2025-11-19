@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Home Page</title>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #e8f1f8, #ffffff);
+        color: #333;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background-color: #011d3a;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+        font-size: 22px;
+        font-weight: bold;
+        color: #f2f2f2;
+    }
+
+    nav a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #f8f5f5;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    nav a:hover {
+        color: #007bff;
+    }
+
+    .btn-contact {
+        background: #f8f8f8;
+        color: rgb(1, 34, 105);
+        padding: 10px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+    }
+
+    .btn-contact:hover {
+        background: #01116d;
+        color: #fff;
+    }
+
+    .main {
+    position: relative;
+    background-image: url('https://images.pexels.com/photos/4254162/pexels-photo-4254162.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1200');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.55);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    .text {
+        color: white;
+        max-width: 600px;
+        text-align: center;
+    }
+
+    .text h1 {
+        font-size: 42px;
+        margin-bottom: 20px;
+    }
+
+    .text p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #f0f0f0;
+    }
+
+    .buttons {
+        margin-top: 30px;
+    }
+
+    .button {
+        display: inline-block;
+        margin: 10px 10px 0 0;
+        padding: 14px 28px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: #0056b3;
+    }
+
+    section {
+        padding: 80px 50px;
+        background: #f9f9fc;
+        border-top: 1px solid #ddd;
+        text-align: center;
+    }
+
+    section h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        color: #003366;
+    }
+
+    section p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #444;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .illustration {
+        margin-top: 30px;
+    }
+
+    .illustration img {
+        width: 400px;
+        max-width: 100%;
+        border-radius: 12px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background: #011d3a;
+        color: #fff;
+    }
+
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .text h1 {
+            font-size: 32px;
+        }
+
+        .text p {
+            font-size: 16px;
+        }
+
+        .button {
+            font-size: 15px;
+            padding: 12px 24px;
+        }
+
+        .illustration img {
+            width: 90%;
+        }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Local Service Portal</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#support">Support</a>
+        <a href="#about">About</a>
+        <a href="#blog">Blog</a>
+    </nav>
+    <a href="#contact-info" class="btn-contact">Contact Us</a>
+</header>
+
+<div class="main" id="home">
+    <div class="overlay">
+        <div class="text">
+            <h1>We focus on your Story.</h1>
+            <p><strong>Why your Story?</strong><br>
+            Because our goal is to provide reliable services as you go across your business journey. We're committed to delivering seamless experiences and outstanding support every step of the way.</p>
+            <div class="buttons">
+                <a href="login" class="button">Login</a>
+                <a href="signup" class="button">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="services">
+    <h2>Our Services</h2>
+    <p>We offer a wide range of local services such as electrical repair, plumbing, cleaning, and more. Our trusted professionals are vetted and reliable. Whether you need quick fixes or regular maintenance, we're here to help!</p>
+    <div class="illustration">
+        <img src="https://5.imimg.com/data5/SELLER/Default/2024/1/373914045/HB/NZ/RR/8100122/plumber-electrician-and-mst-service-provider.jpg" alt="Professional service team">
+    </div>
+</section>
+
+<section id="support">
+    <h2>Customer Support</h2>
+    <p>Have questions or need help with a service? Our support team is available 24/7. We aim to provide quick resolutions and ensure your satisfaction. You can reach us via live chat, email, or phone.</p>
+    <div class="illustration">
+        <img src="https://img.freepik.com/premium-vector/support-center-flat-design-concept-illustration_198565-67.jpg?semt=ais_hybrid&w=740" alt="Customer support center illustration">
+    </div>
+</section>
+
+<section id="about">
+    <h2>About Us</h2>
+    <p>Local Service Portal was built with the mission to connect customers to trustworthy service providers in their locality. We're passionate about convenience, affordability, and transparency in all services we deliver.</p>
+    <div class="illustration">
+        <img src="https://img.freepik.com/free-photo/about-as-service-contact-information-concept_53876-138509.jpg?semt=ais_hybrid&w=740" alt="About our service company">
+    </div>
+</section>
+
+<section id="blog">
+    <h2>Our Blog</h2>
+    <p>Read helpful articles, tips, and insights from industry professionals. Stay informed on how to maintain your home, get service discounts, and discover local success stories.</p>
+    <div class="illustration">
+        <img src="https://www.ryrob.com/wp-content/uploads/2021/11/iStock-496848472-1024x1024.jpg" alt="Blog articles and tips">
+    </div>
+</section>
+
+<section id="contact-info">
+    <h2>Contact Us</h2>
+    <p>If you have any inquiries, partnership interests, or suggestions, feel free to drop us a message. We'd love to hear from you and work together to enhance our community services.</p>
+    <div class="illustration">
+        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSv1ZB26R05yGcLFvnyLPsj6P5Uqz_hg3B93W0UhOhP_3l38sz-" alt="Contact team illustration">
+    </div>
+</section>
+
+<section id="contact-location">
+    <h2>Contact</h2>
+    <p>245 East 94th Street, New York, NY</p>
+    <p>Monday - Friday: 7:30am - 5pm</p>
+    <p>Arathy TP</p>
+    <p>service@gmail.com</p>
+</section>
+
+<footer>
+    &copy; 2025 Local Service Portal. All rights reserved.
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Consumer Sign Up</title>
+<style>
+    body {
+        background: linear-gradient(to right, #d9afd9, #97d9e1);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .signup-box {
+        background-color: #fff;
+        padding: 40px 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 380px;
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 15px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #6f42c1;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #5936a3;
+    }
+
+    .message {
+        color: red;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    @media (max-width: 500px) {
+        .signup-box {
+        padding: 30px 20px;
+        width: 90%;
+        } 
+
+        input,
+        button {
+        font-size: 14px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="signup-box">
+    <h2>Consumer Sign Up</h2>
+    {% if messages %}
+    {% for message in messages %}
+        <p class="message">{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    <form method="POST">
+    {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+        <input type="text" name="location" placeholder="Location" required>
+        <input type="text" name="phone" placeholder="Contact Number" required>
+        <button type="submit">Sign Up</button>
+    </form>
+</div>
+</body>
+</html>

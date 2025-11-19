@@ -1,0 +1,152 @@
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Worker Sign Up</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to right, #d9afd9, #97d9e1);
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .signup-box {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 420px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 28px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #6f42c1;
+            box-shadow: 0 0 5px rgba(111, 66, 193, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #6f42c1;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #5936a3;
+        }
+
+        .message {
+            color: red;
+            font-size: 14px;
+            margin: -8px 0 10px 0;
+        }
+
+        @media (max-width: 480px) {
+            .signup-box {
+                padding: 30px 20px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="signup-box">
+    <h2>Worker Sign Up</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% render_field userform.first_name placeholder="First Name" %}
+        {% for error in userform.first_name.errors %}
+            <p class="message">{{ error }}</p>
+        {% endfor %}
+
+        {% render_field userform.last_name placeholder="Last Name" %}
+        {% for error in userform.last_name.errors %}
+            <p class="message">{{ error }}</p>
+        {% endfor %}
+
+        {% render_field userform.username placeholder="Username" %}
+        {% for error in userform.username.errors %}
+            <p class="message">{{ error }}</p>
+        {% endfor %}
+
+        {% render_field userform.password placeholder="Password" %}
+        {% for error in userform.password.errors %}
+            <p class="message">{{ error }}</p>
+        {% endfor %}
+
+        {% render_field workerform.phone placeholder="Mobile Number" %}
+        {% for error in workerform.phone.errors %}
+            <p class="message">{{ error }}</p>
+        {% endfor %}
+
+        {% render_field workerform.skills placeholder="Skills (comma separated)" %}
+        {% for error in workerform.skills.errors %}
+            <p class="message">{{ error }}</p>
+        {% endfor %}
+
+        {% render_field workerform.service_rate placeholder="Service Rate (₹/hr)" %}
+        {% for error in workerform.service_rate.errors %}
+            <p class="message">{{ error }}</p>
+        {% endfor %}
+
+        {% render_field workerform.work_experience placeholder="Work Experience (in years)" %}
+        {% for error in workerform.work_experience.errors %}
+            <p class="message">{{ error }}</p>
+        {% endfor %}
+
+        {% render_field workerform.city placeholder="City" %}
+        {% for error in workerform.city.errors %}
+            <p class="message">{{ error }}</p>
+        {% endfor %}
+
+        <button type="submit">Sign Up</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Book Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 40px;
+        }
+
+        .booking-container {
+            max-width: 1000px;
+            margin: auto;
+            background: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #000044;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .form-section {
+            margin-top: 20px;
+        }
+
+        .form-section button {
+            background: #000044;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .form-section button:hover {
+            background: #333366;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background: #000044;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .back-link:hover {
+            background: #333366;
+        }
+
+        input[type="date"] {
+            padding: 8px;
+            font-size: 14px;
+            margin-top: 6px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-container">
+        <h2>Service Booking</h2>
+        <div class="details">
+            <p><strong>Worker Name:</strong> {{ service.worker }}</p>
+            <p><strong>Service:</strong> {{ service.title }}</p>
+            <p><strong>Description:</strong> {{ service.description }}</p>
+            <p><strong>Price:</strong> ₹{{ service.price }}</p>
+            <p><strong>Experience:</strong> {{ service.experience }} years</p>
+        </div>
+
+        <div class="form-section">
+            <form method="post">
+                {% csrf_token %}
+                
+                <label for="date"><strong>Expected Date:</strong></label><br>
+                <input type="date" name="date" required><br><br>
+
+                <button type="submit">Confirm Booking</button>
+            </form>
+        </div>
+
+        <a href="{% url 'consumer_home' %}" class="back-link">← Back to Home</a>
+    </div>
+</body>
+</html>
